@@ -10,8 +10,9 @@
 #import <QuartzCore/QuartzCore.h>
 #import "DetailView.h"
 #import "Utils.h"
+#import "YTPlayerView.h"
 
-@interface NWAtomTrendingViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,detailViewDelegate>
+@interface NWAtomTrendingViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,detailViewDelegate,YTPlayerViewDelegate>
 {
     NSCache *imageCache;
 }

@@ -11,6 +11,8 @@
 #import "NAtomTrendingNewsRequest.h"
 #import "NAtomSportNewsRequest.h"
 #import "TrendingNewsModel.h"
+#import "NAtomYoutubeRequest.h"
+#import "YTPlayerView.h"
 #import "DetailView.h"
 
 @interface NWAtomTrendingViewController ()
@@ -158,6 +160,7 @@
     
     DetailView *articleDetailView=[[DetailView alloc]initWithFrame:CGRectMake(centerScreen.x,centerScreen.y,self.view.frame.size.width,500)];
     articleDetailView.delegate = self;
+    articleDetailView.playerView.delegate = self;
     articleDetailView.center = centerScreen;
     articleDetailView.layer.cornerRadius = 10.0f;
     [articleDetailView.layer setMasksToBounds:YES];
@@ -183,6 +186,15 @@
                     articleDetailView.detailNewsText.text =descrption;
                 }
                 
+                [[NAtomYoutubeRequest sharedInstance] getVideoIdForText:[[NAtomTrendingNewsRequest sharedInstance].trendingNewsModel.statusText objectAtIndex:index]];
+
+                if( ![[NAtomYoutubeRequest sharedInstance].youtubeModel.videoId isEqualToString:@""]) {
+                    articleDetailView.NewsImageView.hidden = YES;
+                    NSDictionary *playerVars = @{
+                                                 @"playsinline" : @1,
+                                                 };
+                    [articleDetailView.playerView loadWithVideoId:[NAtomYoutubeRequest sharedInstance].youtubeModel.videoId playerVars:playerVars];
+                }
                 NSString *imageUrl = [[NAtomTrendingNewsRequest sharedInstance].trendingNewsModel.trendingImage objectAtIndex:index];
                 
                 if ( ( ![imageUrl isEqual:[NSNull null]] ) && ( [imageUrl length] != 0 ) ) {
@@ -218,5 +230,9 @@
 
 -(void) didArticleofIndexRead:(NSInteger)index {
     
+}
+
+-(void)playerViewDidBecomeReady:(YTPlayerView *)playerView {
+    [playerView playVideo];
 }
 @end

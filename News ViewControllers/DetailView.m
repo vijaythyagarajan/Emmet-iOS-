@@ -45,6 +45,7 @@
 - (void)commonSetup {
     DetailView *customView = [[[NSBundle mainBundle] loadNibNamed:@"DetailView" owner:self options:nil] lastObject];
     self.bounds = customView.bounds;
+    self.playerView.delegate = self;
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.textDefineView.bounds byRoundingCorners:(UIRectCornerBottomLeft | UIRectCornerBottomRight) cornerRadii:CGSizeMake(10.0, 10.0)];
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
     maskLayer.frame = self.textDefineView.bounds;
@@ -57,5 +58,9 @@
 
 - (IBAction)closeButton:(id)sender {
     [delegate closeButtonDidPressed];
+}
+
+-(void)playerViewDidBecomeReady:(YTPlayerView *)playerView {
+
 }
 @end

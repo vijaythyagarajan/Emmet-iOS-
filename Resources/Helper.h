@@ -13,4 +13,5 @@
 
 +(NSString *) currentTime;
 +(BOOL)isNetworkAvailable;
++(NSString *)generateVideoSearchTextForNewsTitle:(NSString *)newsTitle;
 @end

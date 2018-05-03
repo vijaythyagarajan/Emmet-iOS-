@@ -15,6 +15,7 @@
                 <outlet property="authorName" destination="FYB-xg-rre" id="F03-5w-r3J"/>
                 <outlet property="detailNewsText" destination="PlK-lP-MxD" id="AMC-va-dTY"/>
                 <outlet property="newsScourceUrl" destination="ThW-Qq-Xvd" id="8be-GX-eFt"/>
+                <outlet property="playerView" destination="7MN-B3-Rrx" id="OcH-u5-BYx"/>
                 <outlet property="textDefineView" destination="eVd-er-WjE" id="tFs-te-0fl"/>
             </connections>
         </placeholder>
@@ -26,7 +27,7 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qht-LT-szc">
                     <rect key="frame" x="0.0" y="0.0" width="350" height="400"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7MN-B3-Rrx">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7MN-B3-Rrx" customClass="YTPlayerView">
                             <rect key="frame" x="0.0" y="0.0" width="350" height="250"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RRl-Au-y7N">
