@@ -36,4 +36,24 @@
     }
     return NO;
 }
+
++(NSString *)generateVideoSearchTextForNewsTitle:(NSString *)newsTitle {
+    NSMutableArray *searchTextArray = [NSMutableArray new];
+    NSLinguisticTagger *tagger = [[NSLinguisticTagger alloc] initWithTagSchemes:[NSArray arrayWithObject:NSLinguisticTagSchemeLexicalClass] options:~NSLinguisticTaggerOmitWords];
+    [tagger setString:newsTitle];
+    [tagger enumerateTagsInRange:NSMakeRange(0, [newsTitle length])
+                          scheme:NSLinguisticTagSchemeLexicalClass
+                         options:~NSLinguisticTaggerOmitWords
+                      usingBlock:^(NSString *tag, NSRange tokenRange, NSRange sentenceRange, BOOL *stop) {
+                          NSLog(@"found: %@ (%@)", [newsTitle substringWithRange:tokenRange], tag);
+                          if([tag isEqualToString:@"Noun"]){
+                              [searchTextArray addObject:[newsTitle substringWithRange:tokenRange]];
+                          }
+                      }];
+    NSString * result = [[searchTextArray valueForKey:@"description"] componentsJoinedByString:@"-"];
+    if(![result isEqualToString:@""]){
+        return result;
+    }
+    return newsTitle;
+}
 @end
