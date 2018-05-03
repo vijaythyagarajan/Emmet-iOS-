@@ -34,12 +34,14 @@
 -(void) viewWillAppear:(BOOL)animated {
    
     [super viewWillAppear:animated];
+    self.activityIndicator.hidden = NO;
     [self.activityIndicator startAnimating];
     [self updateBadgeCount];
 }
 -(void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.activityIndicator stopAnimating];
+    self.activityIndicator.hidden = YES;
     
 }
 
