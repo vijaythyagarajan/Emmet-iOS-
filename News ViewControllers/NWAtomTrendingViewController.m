@@ -110,7 +110,7 @@
             UIImage *trendingImage = [ self publishImageForUrl:imageUrl];
             tableViewCell.trendingImage.image =trendingImage ;
             CGImageRef cgref = [trendingImage CGImage];
-            if(!([ trendingImage isEqual:nil] && cgref == nil)){
+            if(!(trendingImage == nil && cgref == NULL)){
             [imageCache setObject:trendingImage forKey:[[NAtomTrendingNewsRequest sharedInstance].trendingNewsModel.trendingImage objectAtIndex:indexPath.row]];
             }
         }
