@@ -12,6 +12,7 @@
 #import "NAtomSportNewsRequest.h"
 @interface NWAtomSignInViewController ()
 
+@property BOOL showPassword;
 @end
 
 @implementation NWAtomSignInViewController
@@ -37,6 +38,7 @@
     if(userName) {
         [self afterSignIn];
     }
+    _showPassword = NO;
 }
 #pragma mark - Navigation
 
@@ -104,5 +106,18 @@
 
 -(void) dismissKeyBoard {
     [self.view endEditing:YES];
+}
+- (IBAction)showPassword:(id)sender {
+    _showPassword = ! _showPassword;
+    if(_showPassword) {
+        [_passcode setSecureTextEntry:NO];
+        UIImage *open_eye = [UIImage imageNamed:@"eye_open"];
+        [_showPasscode setImage:open_eye forState:UIControlStateNormal];
+    }
+    else {
+        [_passcode setSecureTextEntry:YES];
+        UIImage *open_close = [UIImage imageNamed:@"eye_close"];
+        [_showPasscode setImage:open_close forState:UIControlStateNormal];
+    }
 }
 @end
