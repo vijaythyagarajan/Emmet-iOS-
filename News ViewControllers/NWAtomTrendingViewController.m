@@ -185,23 +185,28 @@
                 if ( ( ![descrption isEqual:[NSNull null]] ) && ( [descrption length] != 0 ) ) {
                     articleDetailView.detailNewsText.text =descrption;
                 }
-                
+                articleDetailView.newsScourceUrl.text = [[NAtomTrendingNewsRequest sharedInstance].trendingNewsModel.url objectAtIndex:index];
                 [[NAtomYoutubeRequest sharedInstance] getVideoIdForText:[[NAtomTrendingNewsRequest sharedInstance].trendingNewsModel.statusText objectAtIndex:index]];
 
-                if( ![[NAtomYoutubeRequest sharedInstance].youtubeModel.videoId isEqualToString:@""]) {
+                if( !([NAtomYoutubeRequest sharedInstance].youtubeModel.videoId == nil)) {
                     articleDetailView.NewsImageView.hidden = YES;
                     NSDictionary *playerVars = @{
                                                  @"playsinline" : @1,
                                                  };
-                    [articleDetailView.playerView loadWithVideoId:[NAtomYoutubeRequest sharedInstance].youtubeModel.videoId playerVars:playerVars];
+                    [UIView animateWithDuration:1.0 animations:^{
+                        NSString *videoId = [NAtomYoutubeRequest sharedInstance].youtubeModel.videoId ;
+                        [articleDetailView.playerView loadWithVideoId:videoId playerVars:playerVars];
+
+                    }];
                 }
+                else{
                 NSString *imageUrl = [[NAtomTrendingNewsRequest sharedInstance].trendingNewsModel.trendingImage objectAtIndex:index];
                 
                 if ( ( ![imageUrl isEqual:[NSNull null]] ) && ( [imageUrl length] != 0 ) ) {
                         articleDetailView.NewsImageView.image =[ self publishImageForUrl:imageUrl];
-                        articleDetailView.newsScourceUrl.text = [[NAtomTrendingNewsRequest sharedInstance].trendingNewsModel.url objectAtIndex:index];
+                    
                 }
-                
+                }
             }];
         }];
     }];;

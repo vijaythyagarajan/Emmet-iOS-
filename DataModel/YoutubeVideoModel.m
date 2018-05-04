@@ -20,6 +20,9 @@
         for ( NSDictionary *dict in _items) {
             _itemId = [dict objectForKey:@"id"];
             _videoId = [_itemId valueForKey:@"videoId"];
+            if(_videoId == nil) {
+                _videoId = [_itemId valueForKey:@"playlistId"];
+            }
         }
     }
     

@@ -39,6 +39,7 @@
 
 +(NSString *)generateVideoSearchTextForNewsTitle:(NSString *)newsTitle {
     NSMutableArray *searchTextArray = [NSMutableArray new];
+    NSString * result;
     NSLinguisticTagger *tagger = [[NSLinguisticTagger alloc] initWithTagSchemes:[NSArray arrayWithObject:NSLinguisticTagSchemeLexicalClass] options:~NSLinguisticTaggerOmitWords];
     [tagger setString:newsTitle];
     [tagger enumerateTagsInRange:NSMakeRange(0, [newsTitle length])
@@ -50,10 +51,12 @@
                               [searchTextArray addObject:[newsTitle substringWithRange:tokenRange]];
                           }
                       }];
-    NSString * result = [[searchTextArray valueForKey:@"description"] componentsJoinedByString:@"-"];
-    if(![result isEqualToString:@""]){
-        return result;
+    if(searchTextArray.count>0){
+    result = [[searchTextArray valueForKey:@"description"] componentsJoinedByString:@"-"];
     }
-    return newsTitle;
+    else {
+        result = [newsTitle stringByReplacingOccurrencesOfString:@" " withString:@"-"];
+    }
+    return result;
 }
 @end
