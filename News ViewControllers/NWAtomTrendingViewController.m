@@ -11,6 +11,8 @@
 #import "NAtomTrendingNewsRequest.h"
 #import "NAtomSportNewsRequest.h"
 #import "TrendingNewsModel.h"
+#import "NAtomYoutubeRequest.h"
+#import "YTPlayerView.h"
 #import "DetailView.h"
 
 @interface NWAtomTrendingViewController ()
@@ -158,6 +160,7 @@
     
     DetailView *articleDetailView=[[DetailView alloc]initWithFrame:CGRectMake(centerScreen.x,centerScreen.y,self.view.frame.size.width,500)];
     articleDetailView.delegate = self;
+    articleDetailView.playerView.delegate = self;
     articleDetailView.center = centerScreen;
     articleDetailView.layer.cornerRadius = 10.0f;
     [articleDetailView.layer setMasksToBounds:YES];
@@ -182,14 +185,28 @@
                 if ( ( ![descrption isEqual:[NSNull null]] ) && ( [descrption length] != 0 ) ) {
                     articleDetailView.detailNewsText.text =descrption;
                 }
-                
+                articleDetailView.newsScourceUrl.text = [[NAtomTrendingNewsRequest sharedInstance].trendingNewsModel.url objectAtIndex:index];
+                [[NAtomYoutubeRequest sharedInstance] getVideoIdForText:[[NAtomTrendingNewsRequest sharedInstance].trendingNewsModel.statusText objectAtIndex:index]];
+
+                if( !([NAtomYoutubeRequest sharedInstance].youtubeModel.videoId == nil)) {
+                    articleDetailView.NewsImageView.hidden = YES;
+                    NSDictionary *playerVars = @{
+                                                 @"playsinline" : @1,
+                                                 };
+                    [UIView animateWithDuration:1.0 animations:^{
+                        NSString *videoId = [NAtomYoutubeRequest sharedInstance].youtubeModel.videoId ;
+                        [articleDetailView.playerView loadWithVideoId:videoId playerVars:playerVars];
+
+                    }];
+                }
+                else{
                 NSString *imageUrl = [[NAtomTrendingNewsRequest sharedInstance].trendingNewsModel.trendingImage objectAtIndex:index];
                 
                 if ( ( ![imageUrl isEqual:[NSNull null]] ) && ( [imageUrl length] != 0 ) ) {
                         articleDetailView.NewsImageView.image =[ self publishImageForUrl:imageUrl];
-                        articleDetailView.newsScourceUrl.text = [[NAtomTrendingNewsRequest sharedInstance].trendingNewsModel.url objectAtIndex:index];
+                    
                 }
-                
+                }
             }];
         }];
     }];;
@@ -218,5 +235,9 @@
 
 -(void) didArticleofIndexRead:(NSInteger)index {
     
+}
+
+-(void)playerViewDidBecomeReady:(YTPlayerView *)playerView {
+    [playerView playVideo];
 }
 @end

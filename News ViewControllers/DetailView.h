@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YTPlayerView.h"
 
 @protocol detailViewDelegate;
 
-@interface DetailView : UIView
+@interface DetailView : UIView <YTPlayerViewDelegate>
 {
     id <detailViewDelegate> delegate;
 }
@@ -20,10 +21,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *detailNewsText;
 @property (weak, nonatomic) IBOutlet UILabel *newsScourceUrl;
 @property (weak, nonatomic) IBOutlet UIView *textDefineView;
+@property (weak, nonatomic) IBOutlet YTPlayerView *playerView;
 
 @property (strong,nonatomic) NSMutableArray *articlesRead;
 
 - (IBAction)closeButton:(id)sender;
+
++(void) playVideos;
 
 @property (nonatomic,retain) id <detailViewDelegate> delegate;
 

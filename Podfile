@@ -9,6 +9,7 @@ target 'News' do
     pod 'Reachability'
     pod 'Firebase/Core'
     pod 'Firebase/Auth'
+    pod "youtube-ios-player-helper", "~> 0.1.1"
   target 'NewsTests' do
     inherit! :search_paths
     # Pods for testing
