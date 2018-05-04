@@ -61,7 +61,6 @@
     NSDictionary *allArticles = [NAtomTrendingNewsRequest sharedInstance].trendingNewsModel.articlesKey;
     NSInteger unReadCount = [allArticles count] - [_articlesRead count];
     if(unReadCount > 0){
-        _trending.badgeColor = [UIColor redColor];
         _trending.badgeValue = [NSString stringWithFormat:@"%ld",unReadCount];
     }
     else {

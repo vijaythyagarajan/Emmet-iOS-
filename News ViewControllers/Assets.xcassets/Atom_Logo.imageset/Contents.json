@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "4482089-brown-backgrounds.jpg",
+      "filename" : "Atom_editor_logo_black.svg.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "4482089-brown-backgrounds-1.jpg",
+      "filename" : "Atom_editor_logo_black.svg-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "4482089-brown-backgrounds-2.jpg",
+      "filename" : "Atom_editor_logo_black.svg-2.png",
       "scale" : "3x"
     }
   ],
