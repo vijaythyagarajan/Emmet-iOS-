@@ -10,9 +10,17 @@
 #import "NAtomTrendingNewsRequest.h"
 #import "NWAtomTrendingViewController.h"
 #import "NAtomSportNewsRequest.h"
-@interface NWAtomSignInViewController ()
 
+#define form_Default_height 400
+#define form_compact_height 325
+@interface NWAtomSignInViewController ()
+@property (weak, nonatomic) IBOutlet UIView *reEnterPasswordView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *formViewHeightLayoutConstrait;
+@property (weak, nonatomic) IBOutlet UIButton *forgotPassword;
+
+@property (weak, nonatomic) IBOutlet UIView *signUpView;
 @property BOOL showPassword;
+@property (weak, nonatomic) IBOutlet UIView *signInView;
 @end
 
 @implementation NWAtomSignInViewController
@@ -21,7 +29,9 @@
     [super viewDidLoad];
     self.emailAddress.delegate = self;
     self.passcode.delegate = self;
-
+    
+    self.reEnterPasswordView.hidden = YES;
+    _formViewHeightLayoutConstrait.constant = form_compact_height;
     // Do any additional setup after loading the view.
 }
 
@@ -119,5 +129,27 @@
         UIImage *open_close = [UIImage imageNamed:@"eye_close"];
         [_showPasscode setImage:open_close forState:UIControlStateNormal];
     }
+}
+- (IBAction)signInOption:(id)sender {
+    [UIView animateWithDuration:0.1 animations:^{
+        self.reEnterPasswordView.hidden = YES;
+        self.showPasscode.hidden = NO;
+        self.forgotPassword.hidden = NO;
+        self.formViewHeightLayoutConstrait.constant = form_compact_height;
+        self.signUpView.backgroundColor = [UIColor clearColor];
+        self.signInView.backgroundColor = [UIColor whiteColor];
+    }];
+    
+}
+
+- (IBAction)signUpOption:(id)sender {
+    [UIView animateWithDuration:0.1 animations:^{
+        self.reEnterPasswordView.hidden = NO;
+        self.showPasscode.hidden = YES;
+        self.forgotPassword.hidden = YES;
+        self.formViewHeightLayoutConstrait.constant = form_Default_height;
+        self.signInView.backgroundColor = [UIColor clearColor];
+        self.signUpView.backgroundColor = [UIColor whiteColor];
+    }];
 }
 @end
