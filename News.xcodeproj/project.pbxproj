@@ -36,6 +36,9 @@
 		A44AC6202099B5C800DEDC8F /* NAtomBusinessNewsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A44AC61F2099B5C800DEDC8F /* NAtomBusinessNewsRequest.m */; };
 		A44AC6232099B5EE00DEDC8F /* NAtomScienceAndTechnologyNewsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A44AC6222099B5EE00DEDC8F /* NAtomScienceAndTechnologyNewsRequest.m */; };
 		A44AC6262099B63F00DEDC8F /* NAtomEntertainmentNewsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A44AC6252099B63F00DEDC8F /* NAtomEntertainmentNewsRequest.m */; };
+		A44AC9E9209B63F400DEDC8F /* NAtomYoutubeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A44AC9E8209B63F400DEDC8F /* NAtomYoutubeRequest.m */; };
+		A44AC9EC209B6E5E00DEDC8F /* YoutubeVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A44AC9EB209B6E5E00DEDC8F /* YoutubeVideoModel.m */; };
+		A44AC9EF209CCA8800DEDC8F /* NAtomSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A44AC9EE209CCA8800DEDC8F /* NAtomSettingsViewController.m */; };
 		BC51B9015716F528938F047A /* libPods-NewsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2519C3D055E6434AF545DF /* libPods-NewsTests.a */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +113,12 @@
 		A44AC6222099B5EE00DEDC8F /* NAtomScienceAndTechnologyNewsRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NAtomScienceAndTechnologyNewsRequest.m; sourceTree = "<group>"; };
 		A44AC6242099B63F00DEDC8F /* NAtomEntertainmentNewsRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NAtomEntertainmentNewsRequest.h; sourceTree = "<group>"; };
 		A44AC6252099B63F00DEDC8F /* NAtomEntertainmentNewsRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NAtomEntertainmentNewsRequest.m; sourceTree = "<group>"; };
+		A44AC9E7209B63F400DEDC8F /* NAtomYoutubeRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NAtomYoutubeRequest.h; sourceTree = "<group>"; };
+		A44AC9E8209B63F400DEDC8F /* NAtomYoutubeRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NAtomYoutubeRequest.m; sourceTree = "<group>"; };
+		A44AC9EA209B6E5E00DEDC8F /* YoutubeVideoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YoutubeVideoModel.h; sourceTree = "<group>"; };
+		A44AC9EB209B6E5E00DEDC8F /* YoutubeVideoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YoutubeVideoModel.m; sourceTree = "<group>"; };
+		A44AC9ED209CCA8800DEDC8F /* NAtomSettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NAtomSettingsViewController.h; sourceTree = "<group>"; };
+		A44AC9EE209CCA8800DEDC8F /* NAtomSettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NAtomSettingsViewController.m; sourceTree = "<group>"; };
 		A5A9D28577D9EEC7857A4270 /* Pods-NewsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NewsUITests/Pods-NewsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BE2519C3D055E6434AF545DF /* libPods-NewsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NewsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C064AC027F707050091E0D04 /* Pods-News.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-News.release.xcconfig"; path = "Pods/Target Support Files/Pods-News/Pods-News.release.xcconfig"; sourceTree = "<group>"; };
@@ -159,6 +168,7 @@
 		A424728D208DB06200BCBACF = {
 			isa = PBXGroup;
 			children = (
+				A42472A7208DB06400BCBACF /* Info.plist */,
 				A42472CE208DFA8F00BCBACF /* NetworkRequest */,
 				A42472CD208DFA7D00BCBACF /* Resources */,
 				A42472CC208DFA6B00BCBACF /* DataModel */,
@@ -191,7 +201,6 @@
 				A424729C208DB06200BCBACF /* ViewController.h */,
 				A424729D208DB06300BCBACF /* ViewController.m */,
 				A42472A2208DB06400BCBACF /* Assets.xcassets */,
-				A42472A7208DB06400BCBACF /* Info.plist */,
 				A42472A8208DB06400BCBACF /* main.m */,
 				A42472CF208DFAFE00BCBACF /* NWAtomTrendingViewController.h */,
 				A42472D0208DFAFE00BCBACF /* NWAtomTrendingViewController.m */,
@@ -205,6 +214,8 @@
 				A41EDB77208F9F6C00C380A9 /* DetailView.m */,
 				A44AC61A2098A15900DEDC8F /* NAtomSportTableViewCell.h */,
 				A44AC61B2098A15900DEDC8F /* NAtomSportTableViewCell.m */,
+				A44AC9ED209CCA8800DEDC8F /* NAtomSettingsViewController.h */,
+				A44AC9EE209CCA8800DEDC8F /* NAtomSettingsViewController.m */,
 			);
 			path = "News ViewControllers";
 			sourceTree = "<group>";
@@ -246,6 +257,8 @@
 				A42472DB208E25D300BCBACF /* TrendingNewsModel.m */,
 				A41EDB6C208F1A0800C380A9 /* SportNewsModel.h */,
 				A41EDB6D208F1A0800C380A9 /* SportNewsModel.m */,
+				A44AC9EA209B6E5E00DEDC8F /* YoutubeVideoModel.h */,
+				A44AC9EB209B6E5E00DEDC8F /* YoutubeVideoModel.m */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -274,6 +287,8 @@
 				A44AC6222099B5EE00DEDC8F /* NAtomScienceAndTechnologyNewsRequest.m */,
 				A44AC6242099B63F00DEDC8F /* NAtomEntertainmentNewsRequest.h */,
 				A44AC6252099B63F00DEDC8F /* NAtomEntertainmentNewsRequest.m */,
+				A44AC9E7209B63F400DEDC8F /* NAtomYoutubeRequest.h */,
+				A44AC9E8209B63F400DEDC8F /* NAtomYoutubeRequest.m */,
 			);
 			path = NetworkRequest;
 			sourceTree = "<group>";
@@ -484,9 +499,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-News/Pods-News-resources.sh",
+				"${PODS_ROOT}/youtube-ios-player-helper/youtube-ios-player-helper/Assets.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Assets.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -584,6 +602,8 @@
 				A424729E208DB06300BCBACF /* ViewController.m in Sources */,
 				A42472D9208E1FC400BCBACF /* NAtomTrendingNewsRequest.m in Sources */,
 				A42472D6208E003400BCBACF /* NWAtomTrendingTableViewCell.m in Sources */,
+				A44AC9EF209CCA8800DEDC8F /* NAtomSettingsViewController.m in Sources */,
+				A44AC9E9209B63F400DEDC8F /* NAtomYoutubeRequest.m in Sources */,
 				A41EDB7B2090D6D000C380A9 /* Utils.m in Sources */,
 				A41EDB6E208F1A0800C380A9 /* SportNewsModel.m in Sources */,
 				A42472D1208DFAFE00BCBACF /* NWAtomTrendingViewController.m in Sources */,
@@ -591,6 +611,7 @@
 				A41EDB78208F9F6C00C380A9 /* DetailView.m in Sources */,
 				A42472A9208DB06400BCBACF /* main.m in Sources */,
 				A424729B208DB06200BCBACF /* AppDelegate.m in Sources */,
+				A44AC9EC209B6E5E00DEDC8F /* YoutubeVideoModel.m in Sources */,
 				A44AC6232099B5EE00DEDC8F /* NAtomScienceAndTechnologyNewsRequest.m in Sources */,
 				A44AC6262099B63F00DEDC8F /* NAtomEntertainmentNewsRequest.m in Sources */,
 				A41EDB71208F29E700C380A9 /* NWAtomSportViewController.m in Sources */,
@@ -770,7 +791,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XU88V87ULP;
-				INFOPLIST_FILE = News/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -789,7 +810,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XU88V87ULP;
-				INFOPLIST_FILE = News/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

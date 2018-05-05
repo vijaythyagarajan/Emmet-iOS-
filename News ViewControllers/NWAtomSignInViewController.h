@@ -18,5 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIView *activityView;
 - (IBAction)showPassword:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *showPasscode;
+- (IBAction)signInOption:(id)sender;
+- (IBAction)signUpOption:(id)sender;
 
 @end

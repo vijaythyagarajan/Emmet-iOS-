@@ -15,10 +15,17 @@
 #import "YTPlayerView.h"
 #import "DetailView.h"
 
+typedef NS_ENUM(NSInteger,scrollDirection){
+    scrollDirectionNone,
+    scrollDirectionTop,
+    scrollDirectionBottom
+} ;
+
 @interface NWAtomTrendingViewController ()
 @property (weak, nonatomic) IBOutlet UITabBarItem *trending;
 @property  BOOL requestStatus;
 @property NSMutableDictionary *articlesRead;
+@property (nonatomic,assign) CGFloat lastContentoffSet;
 
 @end
 
@@ -30,6 +37,7 @@
     self.tableView.dataSource = self;
     _articlesRead = [NSMutableDictionary new];
     imageCache = [[NSCache alloc] init];
+    //_activityIndicator = [UIActivityIndicatorView new];
     // Do any additional setup after loading the view.
 }
 
@@ -49,11 +57,13 @@
 
 -(void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    self.activityIndicator.hidden = NO;
     [self.activityIndicator startAnimating];
 }
 
 -(void) viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
+    self.activityIndicator.hidden = YES;
     [self.activityIndicator stopAnimating];
 }
 -(void) updateBadgeCount {
@@ -211,6 +221,25 @@
     }];;
     
 }
+#pragma Scroll delegate
+
+-(void) scrollViewDidScroll:(UIScrollView *)scrollView {
+    scrollDirection scrollDirection;
+    
+    if( scrollView.contentOffset.y < -100.0) {
+        scrollDirection = scrollDirectionNone;
+        self.activityIndicator.hidden = NO;
+        [ self.activityIndicator startAnimating];
+        BOOL trendingNewsRequest = [[NAtomTrendingNewsRequest sharedInstance] getAllNews];
+        if(trendingNewsRequest) {
+            NSLog(@"Request Successful");
+            [self.tableView reloadData];
+        }
+    }
+    [self.activityIndicator stopAnimating];
+    self.lastContentoffSet = scrollView.contentOffset.y;
+}
+
 
 #pragma DetailView Delegate Method
 - (BOOL)closeButtonDidPressed {
