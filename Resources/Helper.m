@@ -59,4 +59,16 @@
     }
     return result;
 }
+
++(NSString *) currentMonth {
+    NSArray *monthList = @[@"Jan",@"Feb",@"Mar",@"Apr",@"May",@"Jun",@"Jul",@"Aug",@"Sept",@"Oct",@"Nov",@"Dec"];
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
+    
+    NSInteger day = [components day];
+    NSInteger month = [components month]-1;
+    
+    NSString *string = [NSString stringWithFormat:@"%@ %ld", [monthList objectAtIndex:month],(long)day];
+    
+    return string;
+}
 @end

@@ -1,14 +1,14 @@
 //
-//  SportNewsModel.h
+//  SportCrickDataModel.h
 //  News
 //
-//  Created by vijaythyagarajan on 24/04/18.
+//  Created by vijaythyagarajan on 08/05/18.
 //  Copyright © 2018 vijaythyagarajan. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface SportNewsModel : NSObject
+@interface SportCrickDataModel : NSObject
 
 -(instancetype) initWithData:(NSData *)data;
 
@@ -23,4 +23,5 @@
 @property BOOL isCricketRequestSent;
 @property NSString *responseStatus;
 @property NSInteger count;
+
 @end

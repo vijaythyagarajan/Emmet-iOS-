@@ -19,6 +19,9 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerViewHeightLayoutConstraint;
+@property (weak, nonatomic) IBOutlet UIView *HeaderBigView;
+@property (weak, nonatomic) IBOutlet UILabel *headerSmallLabel;
+@property (weak, nonatomic) IBOutlet UILabel *monthLabel;
 
 -(UIImage *)publishImageForUrl:(NSString *)imageURL;
 @end

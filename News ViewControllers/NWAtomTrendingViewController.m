@@ -26,6 +26,8 @@ typedef NS_ENUM(NSInteger,scrollDirection){
 @property  BOOL requestStatus;
 @property NSMutableDictionary *articlesRead;
 @property (nonatomic,assign) CGFloat lastContentoffSet;
+@property (weak, nonatomic) IBOutlet UIImageView *loadImage;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bigHeaderViewHeightLayoutConstraint;
 
 @end
 
@@ -37,22 +39,21 @@ typedef NS_ENUM(NSInteger,scrollDirection){
     self.tableView.dataSource = self;
     _articlesRead = [NSMutableDictionary new];
     imageCache = [[NSCache alloc] init];
-    //_activityIndicator = [UIActivityIndicatorView new];
+    _monthLabel.text = [Helper currentMonth];
     // Do any additional setup after loading the view.
 }
 
 -(void) viewWillAppear:(BOOL)animated {
    
     [super viewWillAppear:animated];
-    self.activityIndicator.hidden = NO;
-    [self.activityIndicator startAnimating];
+    _activityIndicator.hidden = NO;
+    [_activityIndicator startAnimating];
     [self updateBadgeCount];
 }
 -(void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.activityIndicator stopAnimating];
-    self.activityIndicator.hidden = YES;
-    
+     _activityIndicator.hidden = YES;
+    [_activityIndicator stopAnimating];
 }
 
 -(void) viewWillDisappear:(BOOL)animated {
@@ -195,7 +196,7 @@ typedef NS_ENUM(NSInteger,scrollDirection){
                     articleDetailView.detailNewsText.text =descrption;
                 }
                 articleDetailView.newsScourceUrl.text = [[NAtomTrendingNewsRequest sharedInstance].trendingNewsModel.url objectAtIndex:index];
-                [[NAtomYoutubeRequest sharedInstance] getVideoIdForText:[[NAtomTrendingNewsRequest sharedInstance].trendingNewsModel.statusText objectAtIndex:index]];
+                [[NAtomYoutubeRequest sharedInstance] getVideoIdForText:[[NAtomTrendingNewsRequest sharedInstance].trendingNewsModel.descriptionText objectAtIndex:index]];
 
                 if( !([NAtomYoutubeRequest sharedInstance].youtubeModel.videoId == nil)) {
                     articleDetailView.NewsImageView.hidden = YES;
@@ -225,7 +226,26 @@ typedef NS_ENUM(NSInteger,scrollDirection){
 
 -(void) scrollViewDidScroll:(UIScrollView *)scrollView {
     scrollDirection scrollDirection;
-    
+    CGRect thePosition =  _HeaderBigView.frame;
+    CGRect container = CGRectMake(self.tableView.contentOffset.x, self.tableView.contentOffset.y, self.tableView.frame.size.width, self.tableView.frame.size.height);
+    if(CGRectIntersectsRect(thePosition, container))
+    {
+        _headerSmallLabel.text = @"";
+        [self.view layoutIfNeeded];
+        [UIView animateWithDuration:0.01 animations:^{
+            self.bigHeaderViewHeightLayoutConstraint.constant = 60;
+            [self.view layoutIfNeeded];
+        }];
+    }
+    else
+    {
+        _headerSmallLabel.text = @"Trending News";
+        [self.view layoutIfNeeded];
+        [UIView animateWithDuration:0.01 animations:^{
+            self.bigHeaderViewHeightLayoutConstraint.constant = 0;
+            [self.view layoutIfNeeded];
+        }];
+    }
     if( scrollView.contentOffset.y < -100.0) {
         scrollDirection = scrollDirectionNone;
         self.activityIndicator.hidden = NO;
@@ -236,6 +256,7 @@ typedef NS_ENUM(NSInteger,scrollDirection){
             [self.tableView reloadData];
         }
     }
+    self.activityIndicator.hidden = YES;
     [self.activityIndicator stopAnimating];
     self.lastContentoffSet = scrollView.contentOffset.y;
 }
@@ -255,7 +276,7 @@ typedef NS_ENUM(NSInteger,scrollDirection){
                          completion:^(BOOL finished) {
                              [detailView removeFromSuperview];
                              [visualEffectView removeFromSuperview];
-                         }];
+        }];
         return YES;
     }
     return NO;

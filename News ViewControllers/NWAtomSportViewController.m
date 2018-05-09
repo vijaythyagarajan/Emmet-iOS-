@@ -32,7 +32,8 @@
     _activityView.hidden = NO;
     [_activityIndicator startAnimating];
     BOOL sportRequestStatus =  [NAtomSportNewsRequest sharedInstance].getAllSportNews;
-    if(sportRequestStatus){
+    BOOL sportCrickRequestStatus = [NAtomSportNewsRequest sharedInstance].getCricketNews;
+    if(sportRequestStatus && sportCrickRequestStatus){
         _activityView.hidden = YES;
         [_activityIndicator stopAnimating];
     }
@@ -58,7 +59,7 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SportTableViewCell" owner:self options:nil];
         sportCell = [nib objectAtIndex:0];
     }
-    if([NAtomSportNewsRequest sharedInstance].sportNewsModel.count > 0) {
+    if(([NAtomSportNewsRequest sharedInstance].sportNewsModel.count > 0) && indexPath.section == 0) {
         sportCell.statusMessageLabel.text = [[NAtomSportNewsRequest sharedInstance].sportNewsModel.statusTitle objectAtIndex:indexPath.row];
         NSString* descrption =  [[NAtomSportNewsRequest sharedInstance].sportNewsModel.descrptionText objectAtIndex:indexPath.row];
         
@@ -97,6 +98,45 @@
         [self.view addSubview:self.tableView.backgroundView];
     }
     }
+    if(([NAtomSportNewsRequest sharedInstance].sportCrickDataModel.count > 0) && indexPath.section == 1) {
+        sportCell.statusMessageLabel.text = [[NAtomSportNewsRequest sharedInstance].sportCrickDataModel.statusTitle objectAtIndex:indexPath.row];
+        NSString* descrption =  [[NAtomSportNewsRequest sharedInstance].sportCrickDataModel.descrptionText objectAtIndex:indexPath.row];
+        
+        if ( ( ![descrption isEqual:[NSNull null]] ) && ( [descrption length] != 0 ) ) {
+            sportCell.detailMessageLabel.text =descrption;
+        }
+        else {
+            sportCell.detailMessageLabel.text = [[NAtomSportNewsRequest sharedInstance].sportCrickDataModel.statusTitle objectAtIndex:indexPath.row];
+        }
+        
+        NSString *imageUrl = [[NAtomSportNewsRequest sharedInstance].sportCrickDataModel.DisplayImage objectAtIndex:indexPath.row];
+        if(![imageUrl isKindOfClass:[NSNull null]]){
+            UIImage *image = [imageCache objectForKey:imageUrl];
+            
+            if(image) {
+                sportCell.displayImage.image = image;
+            }
+            else if ( ( ![imageUrl isEqual:[NSNull null]] ) && ( [imageUrl length] != 0 ) ) {
+                
+                UIImage *trendingImage = [ self publishImageForUrl:imageUrl];
+                sportCell.displayImage.image =trendingImage ;
+                CGImageRef cgref = [trendingImage CGImage];
+                if(!(trendingImage == nil && cgref == NULL)){
+                    [imageCache setObject:trendingImage forKey:[[NAtomSportNewsRequest sharedInstance].sportCrickDataModel.DisplayImage objectAtIndex:indexPath.row]];
+                }
+            }
+        }
+        else {
+            
+            self.tableView.hidden = YES;
+            UILabel *noDataLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, self.tableView.bounds.size.height)];
+            noDataLabel.text = @"No data available";
+            noDataLabel.textColor = [UIColor blackColor];
+            noDataLabel.textAlignment= NSTextAlignmentCenter;
+            self.tableView.backgroundView = noDataLabel;
+            [self.view addSubview:self.tableView.backgroundView];
+        }
+    }
     return sportCell;
 }
 
@@ -109,18 +149,48 @@
 }
 //
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [NAtomSportNewsRequest sharedInstance].sportNewsModel.count;
+    NSInteger count = 0;
+    if(section == 0)
+    {
+        count = [NAtomSportNewsRequest sharedInstance].sportNewsModel.count;
+    }
+    else if (section == 1){
+        count = [NAtomSportNewsRequest sharedInstance].sportCrickDataModel.count;
+    }
+    return count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
 }
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    int height = 75; //you can change the height
+    if(section==0)
+    {
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0,0)];
+        view.backgroundColor = [UIColor clearColor];
+        return view;
+    }
+    else if (section ==1) {
+        UILabel *cricketLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, self.view.bounds.size.width, height)];
+        cricketLabel.text = @"Cricket";
+        cricketLabel.font = [UIFont fontWithName:@"Chalkboard SE" size:50];
+        return cricketLabel;
+    }
+    return nil;
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 300;
+    return 275;
 }
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+
 
 - (IBAction)update:(id)sender {
     _activityView.hidden = NO;

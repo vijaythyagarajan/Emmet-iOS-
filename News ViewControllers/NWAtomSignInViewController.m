@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIView *reEnterPasswordView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *formViewHeightLayoutConstrait;
 @property (weak, nonatomic) IBOutlet UIButton *forgotPassword;
+@property (weak, nonatomic) IBOutlet UILabel *loadingMessage;
 
 @property (weak, nonatomic) IBOutlet UIView *signUpView;
 @property BOOL showPassword;
@@ -32,15 +33,25 @@
     
     self.reEnterPasswordView.hidden = YES;
     _formViewHeightLayoutConstrait.constant = form_compact_height;
+    
+    UITapGestureRecognizer *singleFingerTap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(handleSingleTap:)];
+    singleFingerTap.delegate = self;
+    [self.view addGestureRecognizer:singleFingerTap];
     // Do any additional setup after loading the view.
 }
 
+-(void) handleSingleTap:(UIGestureRecognizer *)gesture {
+    [self.view endEditing:YES];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 -(void) viewWillAppear:(BOOL)animated {
+    self.loadingMessage.text = @"loading...";
     _activityIndicator.hidden = YES;
     _activityView.hidden = YES;
     NSString *userDict = [[NSUserDefaults standardUserDefaults] stringForKey:@"userKey"];
@@ -61,9 +72,7 @@
 }
 
 -(void) afterSignIn {
-    _activityView.hidden = NO;
-    _activityIndicator.hidden = NO;
-    [_activityIndicator startAnimating];
+    self.loadingMessage.text = @"Fetching News...";
     BOOL trendingNewsRequest = [[NAtomTrendingNewsRequest sharedInstance] getAllNews];
     if(trendingNewsRequest) {
         NSLog(@"Request Successful");
@@ -72,10 +81,15 @@
 }
 
 - (IBAction)SignInButton:(id)sender {
+    [self.view endEditing:YES];
+    _activityView.hidden = NO;
+    _activityIndicator.hidden = NO;
+    [_activityIndicator startAnimating];
     if(!([_emailAddress.text isEqualToString:@""] && [_passcode.text isEqualToString:@""])){
     [[FIRAuth auth] signInWithEmail:_emailAddress.text password:_passcode.text completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
         if(user){
             NSLog(@"LoginSuccessful");
+            self.loadingMessage.text = @"Sign in Successful";
             NSMutableDictionary *userDictionary = [NSMutableDictionary new];
             [userDictionary setObject:self.emailAddress.text forKey:@"AtomUserName"];
             [userDictionary setObject:self.passcode.text forKey:@"AtomPasscode"];
@@ -84,6 +98,9 @@
             [self afterSignIn];
         }
         else if (error) {
+            self.activityView.hidden = YES;
+            self.activityIndicator.hidden = YES;
+            [self.activityIndicator stopAnimating];
             NSLog(@"FAILED TO SIGN IN ERROR: %@",error);
         }}];
     }

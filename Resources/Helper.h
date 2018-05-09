@@ -12,6 +12,7 @@
 @interface Helper : NSObject
 
 +(NSString *) currentTime;
++(NSString *) currentMonth;
 +(BOOL)isNetworkAvailable;
 +(NSString *)generateVideoSearchTextForNewsTitle:(NSString *)newsTitle;
 @end

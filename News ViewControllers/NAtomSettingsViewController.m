@@ -7,6 +7,7 @@
 //
 
 #import "NAtomSettingsViewController.h"
+#import "NWAtomSignInViewController.h"
 
 @interface NAtomSettingsViewController ()
 
@@ -49,12 +50,34 @@
         _smallHeaderLabel.text = @"Settings";
     }
 }
-//- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-//}
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    UITableViewCell *settingsCell = [tableView dequeueReusableCellWithIdentifier:@"settings"];
+    if(indexPath.section == 0){
+        settingsCell.textLabel.text = @"Trending";
+    }
+    else if (indexPath.section == 1) {
+        settingsCell.textLabel.text = @"Sign Out";
+    }
+    return settingsCell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.section == 1) {
+       
+        NWAtomSignInViewController *add = [self.storyboard instantiateViewControllerWithIdentifier:@"SIGIN"];
+        [self presentViewController:add animated:YES completion:nil];
+    }
+}
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if(section == 0 || section == 1){
+        return 1;
+    }
     return 0;
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
+}
 
 @end

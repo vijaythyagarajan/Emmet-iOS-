@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @import Firebase;
 
-@interface NWAtomSignInViewController : UIViewController <UITextFieldDelegate>
+@interface NWAtomSignInViewController : UIViewController <UITextFieldDelegate,UIGestureRecognizerDelegate>
 - (IBAction)SignInButton:(id)sender;
 @property (weak, nonatomic) IBOutlet UIVisualEffectView *visualEffectView;
 @property (weak, nonatomic) IBOutlet UITextField *emailAddress;
