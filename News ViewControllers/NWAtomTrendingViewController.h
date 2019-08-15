@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerViewHeightLayoutConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *NewHeadingHeightLayoutConstraint;
 
 -(UIImage *)publishImageForUrl:(NSString *)imageURL;
 @end

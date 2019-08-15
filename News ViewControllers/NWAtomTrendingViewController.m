@@ -37,6 +37,7 @@ typedef NS_ENUM(NSInteger,scrollDirection){
     self.tableView.dataSource = self;
     _articlesRead = [NSMutableDictionary new];
     imageCache = [[NSCache alloc] init];
+    self.NewHeadingHeightLayoutConstraint.constant = 75.0;
     //_activityIndicator = [UIActivityIndicatorView new];
     // Do any additional setup after loading the view.
 }
@@ -228,6 +229,7 @@ typedef NS_ENUM(NSInteger,scrollDirection){
     
     if( scrollView.contentOffset.y < -100.0) {
         scrollDirection = scrollDirectionNone;
+        
         self.activityIndicator.hidden = NO;
         [ self.activityIndicator startAnimating];
         BOOL trendingNewsRequest = [[NAtomTrendingNewsRequest sharedInstance] getAllNews];
@@ -236,6 +238,7 @@ typedef NS_ENUM(NSInteger,scrollDirection){
             [self.tableView reloadData];
         }
     }
+
     [self.activityIndicator stopAnimating];
     self.lastContentoffSet = scrollView.contentOffset.y;
 }

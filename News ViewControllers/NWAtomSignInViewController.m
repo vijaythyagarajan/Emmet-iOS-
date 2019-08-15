@@ -72,25 +72,27 @@
 }
 
 - (IBAction)SignInButton:(id)sender {
-    if(!([_emailAddress.text isEqualToString:@""] && [_passcode.text isEqualToString:@""])){
-    [[FIRAuth auth] signInWithEmail:_emailAddress.text password:_passcode.text completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
-        if(user){
-            NSLog(@"LoginSuccessful");
-            NSMutableDictionary *userDictionary = [NSMutableDictionary new];
-            [userDictionary setObject:self.emailAddress.text forKey:@"AtomUserName"];
-            [userDictionary setObject:self.passcode.text forKey:@"AtomPasscode"];
-            [[NSUserDefaults standardUserDefaults] setObject:userDictionary forKey:@"userKey"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            [self afterSignIn];
-        }
-        else if (error) {
-            NSLog(@"FAILED TO SIGN IN ERROR: %@",error);
-        }}];
-    }
+//    if(!([_emailAddress.text isEqualToString:@""] && [_passcode.text isEqualToString:@""])){
+//    [[FIRAuth auth] signInWithEmail:_emailAddress.text password:_passcode.text completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+//        if(user){
+//            NSLog(@"LoginSuccessful");
+//            NSMutableDictionary *userDictionary = [NSMutableDictionary new];
+//            [userDictionary setObject:self.emailAddress.text forKey:@"AtomUserName"];
+//            [userDictionary setObject:self.passcode.text forKey:@"AtomPasscode"];
+//            [[NSUserDefaults standardUserDefaults] setObject:userDictionary forKey:@"userKey"];
+//            [[NSUserDefaults standardUserDefaults] synchronize];
+//            [self afterSignIn];
+//        }
+//        else if (error) {
+//            NSLog(@"FAILED TO SIGN IN ERROR: %@",error);
+//        }}];
+//    }
+    [self afterSignIn];
 }
 
 #pragma textField delegateMethods
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    textField.alpha = 1.0;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     return YES;
 }

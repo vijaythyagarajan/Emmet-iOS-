@@ -39,6 +39,8 @@
 		A44AC9E9209B63F400DEDC8F /* NAtomYoutubeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A44AC9E8209B63F400DEDC8F /* NAtomYoutubeRequest.m */; };
 		A44AC9EC209B6E5E00DEDC8F /* YoutubeVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A44AC9EB209B6E5E00DEDC8F /* YoutubeVideoModel.m */; };
 		A44AC9EF209CCA8800DEDC8F /* NAtomSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A44AC9EE209CCA8800DEDC8F /* NAtomSettingsViewController.m */; };
+		B171FC482144E9FC001624F1 /* WeatherView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B171FC472144E9FC001624F1 /* WeatherView.xib */; };
+		B171FC4B2144F273001624F1 /* WeatherNewsUpdateRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B171FC4A2144F273001624F1 /* WeatherNewsUpdateRequest.m */; };
 		BC51B9015716F528938F047A /* libPods-NewsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2519C3D055E6434AF545DF /* libPods-NewsTests.a */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +122,9 @@
 		A44AC9ED209CCA8800DEDC8F /* NAtomSettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NAtomSettingsViewController.h; sourceTree = "<group>"; };
 		A44AC9EE209CCA8800DEDC8F /* NAtomSettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NAtomSettingsViewController.m; sourceTree = "<group>"; };
 		A5A9D28577D9EEC7857A4270 /* Pods-NewsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NewsUITests/Pods-NewsUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B171FC472144E9FC001624F1 /* WeatherView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherView.xib; sourceTree = "<group>"; };
+		B171FC492144F273001624F1 /* WeatherNewsUpdateRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherNewsUpdateRequest.h; sourceTree = "<group>"; };
+		B171FC4A2144F273001624F1 /* WeatherNewsUpdateRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherNewsUpdateRequest.m; sourceTree = "<group>"; };
 		BE2519C3D055E6434AF545DF /* libPods-NewsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NewsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C064AC027F707050091E0D04 /* Pods-News.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-News.release.xcconfig"; path = "Pods/Target Support Files/Pods-News/Pods-News.release.xcconfig"; sourceTree = "<group>"; };
 		C24F4FA793D9C2DC6A234624 /* libPods-NewsUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NewsUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -246,6 +251,7 @@
 				A42472D2208DFC6F00BCBACF /* TrendingNewsTableViewCell.xib */,
 				A41EDB72208F3D2700C380A9 /* SportTableViewCell.xib */,
 				A41EDB74208F486800C380A9 /* DetailView.xib */,
+				B171FC472144E9FC001624F1 /* WeatherView.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -289,6 +295,8 @@
 				A44AC6252099B63F00DEDC8F /* NAtomEntertainmentNewsRequest.m */,
 				A44AC9E7209B63F400DEDC8F /* NAtomYoutubeRequest.h */,
 				A44AC9E8209B63F400DEDC8F /* NAtomYoutubeRequest.m */,
+				B171FC492144F273001624F1 /* WeatherNewsUpdateRequest.h */,
+				B171FC4A2144F273001624F1 /* WeatherNewsUpdateRequest.m */,
 			);
 			path = NetworkRequest;
 			sourceTree = "<group>";
@@ -421,6 +429,7 @@
 				A42472A6208DB06400BCBACF /* LaunchScreen.storyboard in Resources */,
 				A42472D3208DFC6F00BCBACF /* TrendingNewsTableViewCell.xib in Resources */,
 				A42472A3208DB06400BCBACF /* Assets.xcassets in Resources */,
+				B171FC482144E9FC001624F1 /* WeatherView.xib in Resources */,
 				A41EDB75208F486800C380A9 /* DetailView.xib in Resources */,
 				A41EDB73208F3D2700C380A9 /* SportTableViewCell.xib in Resources */,
 				A42472A1208DB06300BCBACF /* Main.storyboard in Resources */,
@@ -613,6 +622,7 @@
 				A424729B208DB06200BCBACF /* AppDelegate.m in Sources */,
 				A44AC9EC209B6E5E00DEDC8F /* YoutubeVideoModel.m in Sources */,
 				A44AC6232099B5EE00DEDC8F /* NAtomScienceAndTechnologyNewsRequest.m in Sources */,
+				B171FC4B2144F273001624F1 /* WeatherNewsUpdateRequest.m in Sources */,
 				A44AC6262099B63F00DEDC8F /* NAtomEntertainmentNewsRequest.m in Sources */,
 				A41EDB71208F29E700C380A9 /* NWAtomSportViewController.m in Sources */,
 				A42472DC208E25D300BCBACF /* TrendingNewsModel.m in Sources */,
