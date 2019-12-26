@@ -9,7 +9,7 @@
 #import "NAtomYoutubeRequest.h"
 #import "Helper.h"
 
-#define YOUTUBE_SEARCH_URL @"https://www.googleapis.com/youtube/v3/search?q="
+#define YOUTUBE_SEARCH_URL @"https://www.googleapis.com/youtube/v3/videos?q="
 #define MAX_RESULT @"1"
 #define YOUTUBE_API_KEY @"AIzaSyD-CBkxvnwDjLXvbQEG0ct1fgU2bmCnRdQ"
 

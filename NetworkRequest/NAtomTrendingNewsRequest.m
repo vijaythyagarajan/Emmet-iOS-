@@ -11,7 +11,7 @@
 
 #define API_KEY @"0e223511e8094dd7ba6984191336659b"
 
-#define TRENDING_NEWS_URL @"https://newsapi.org/v2/top-headlines?country=ca&apiKey="
+#define TRENDING_NEWS_URL @"https://newsapi.org/v2/top-headlines?country=IN&apiKey="
 
 #define SPORT_NEW_URL @"https://newsapi.org/v2/top-headlines?sources=bbc-sport&apiKey="
 @implementation NAtomTrendingNewsRequest
